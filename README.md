@@ -1,2 +1,2 @@
 # WISE
-WISE - Waste Identification, Sorting, and Evaluation
+WISE - Waste Image Sorting and Evaluation
