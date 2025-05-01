@@ -77,8 +77,8 @@ We used a labeled dataset consisting of 19,762 waste images, categorized into 10
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{images/dataset_classes.png}
-    \caption{Example images across various waste classes from the dataset.}
+    \includegraphics[width=0.8\linewidth]{dataset_classes.png}
+    \caption{Item classification across garbage classes}
     \label{fig:dataset}
 \end{figure}
 
@@ -138,6 +138,7 @@ To assess model performance, we evaluated each CNN architecture using two key me
 \
 \renewcommand{\arraystretch}{1.2} %Adjust row height slightly
 \begin{tabular}{|l|c|c|c|}
+
 \hline
 \textbf{\scriptsize Metric} & \textbf{\scriptsize GoogLeNet} & \textbf{\scriptsize ResNet50} & \textbf{\scriptsize EfficientNet} \\
 \hline
@@ -166,12 +167,22 @@ Training times varied significantly: ResNet took 2136 seconds, GoogLeNet 760 sec
 %%%%%%%%%% DISCUSSION %%%%%%%%%%%%%%
 \section{Discussion}
 \label{sec:discussion}
-ResNet emerged as the most balanced choice for deployment due to its superior classification metrics, despite its longer training time. The performance of the models varied by class complexity, highlighting the need for robust architectures in applications such as smart bins or automated recycling plants. GoogLeNet’s speed advantage may suit edge devices, while EfficientNet requires more tuning for improvement.
+ResNet emerged as the most balanced choice for deployment due to its superior classification metrics, despite its longer training time. The performance of the models varied by class complexity, highlighting the need for robust architectures in applications such as smart bins or automated recycling plants. 
+
+GoogLeNet’s speed advantage may suit edge devices, where real-time analysis of object type detection and classification into garbage types are time sensitive.
+
+EfficientNet requires more tuning for improvement. It is possible that each of these models do well in specific parts of the feature space of the images we have. So having an educated ensemble of the models would be beneficial to have an overall winner prediction framework. 
 
 %%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
-The WISE project validated the potential of CNNs for waste classification. ResNet’s performance makes it suitable for real-world deployment, including smart waste bins and mobile applications. Future work could explore transfer learning, data augmentation, and real-time deployment using embedded systems.
+The WISE project validated the potential of CNNs for waste classification. ResNet’s performance makes it suitable for real-world deployment, including smart waste bins and mobile applications. 
+
+Future work could explore transfer learning, data augmentation, and real-time deployment using embedded systems.
+
+For an industrial product out of this project, we will need to experiment the ensemble model on high volume of images across various lighting settings to ensure all edge cases are covered. Having confidence intervals of predictive capabilities will help the users can make an informed decision in case of ambiguous situations.
+
+
 
 %\bibliographystyle{plainnat}
 \begin{thebibliography}{99}
