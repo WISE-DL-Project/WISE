@@ -33,19 +33,19 @@ University of Virginia \\
 \date{}
 \begin{document}
 
-
+\setlength{\columnsep}{21pt}
 \twocolumn[{
 \maketitle
 %%%%%%%%%% ABSTRACT %%%%%%%%%%%%%%%%%%
 \begin{abstract}
 Effective waste management is a critical global challenge with far-reaching environmental, economic, and public health implications. Despite increasing awareness, less than 20\% of global waste is currently recycled, resulting in significant resource depletion, environmental degradation, and public exposure to hazardous materials. 
-
+\vspace{0.2cm}
 
 The \textbf{WISE} (Waste Identification and Sorting using Enhanced vision) project addresses this gap by employing deep learning for automated waste classification through image recognition. By enabling accurate and efficient real-time sorting, our system aims to optimize recycling processes, reduce human health risks, and facilitate the recovery of valuable materials. We conducted a comparative analysis of three state-of-the-art convolutional neural networks: ResNet, GoogLeNet, and EfficientNet—on a dataset of 19,762 labeled waste images spanning 10 distinct classes. 
+\vspace{0.2cm}
 
-
-Our evaluation highlights each model’s strengths and limitations in terms of accuracy, efficiency, and robustness, offering actionable insights for deploying AI-driven solutions in real-world recycling infrastructures. This work demonstrates the transformative potential of AI in advancing sustainable waste management practices.
-\vspace{1cm}
+Our evaluation highlights each model’s strengths and limitations in terms of accuracy, efficiency, and robustness, offering actionable insights for deploying AI-driven solutions in a wide range of real-world recycling infrastructures. This work demonstrates the transformative potential of AI in advancing sustainable waste management practices.
+\vspace{0.75cm}
 \end{abstract}
 
 }]
@@ -58,16 +58,16 @@ Our evaluation highlights each model’s strengths and limitations in terms of a
 \label{sec:intro}
 
 
-Improper waste disposal leads to contaminated recycling streams, increased costs, and harm to ecosystems. Currently, annual waste generation exceeds 2 billion tons and is expected to increase by 70\% to 3.4 billion tons by 2050. With this predicted drastic increase in global waste production, smart and scalable solutions will become even more essential and widespread. 
+Improper waste disposal leads to contaminated recycling streams, increased costs, and harm to ecosystems. Currently, annual waste generation exceeds 2 billion tons and is expected to increase by 70\% to 3.4 billion tons by 2050. With this predicted drastic increase in global waste production, smart and scalable solutions will become even more essential. 
 
-Applications of automated waste sorting range from consumer waste sorting, e.g., municipal garbage and recycling collection, to large-scale and high stakes industrial waste management. In industrial applications, there is a need for more efficiently and accurately identifying not just waste or recycling, but also differentiating between distinct types of recyclable materials. "Conventional techniques like near-infrared spectroscopy (NIRS)...face difficulties in accurately classifying chemically similar samples, such as polyethylene terephthalate (PET) and PET-glycol (PET-G), which have similar chemical compositions but distinct physical characteristics" \cite{choi2023} and require different recycling processes.
+Applications of automated waste sorting range from consumer waste sorting, e.g., municipal garbage and recycling collection, to large-scale and high stakes industrial waste management. In industrial applications, there is a need for more efficiently and accurately identifying not just waste or recycling, but also differentiating between distinct types of recyclable materials. "Conventional techniques like [the gold standard of] near-infrared spectroscopy (NIRS)...face difficulties in accurately classifying chemically similar samples, such as polyethylene terephthalate (PET) and PET-glycol (PET-G), which have similar chemical compositions but distinct physical characteristics" \cite{choi2023} and require different recycling processes. Previous work has shown, however, that these materials can be identified and separated using deep learning computer vision.
 
 This project leverages deep learning for automated waste sorting, aiming to improve the efficiency and accuracy of classification systems deployed in real-world scenarios. We will explain our processes and ideas for further progression as we strongly believe there is room for improvement using physical applications of these models in the field. 
 
 %%%%%%%%%% RELATED WORKS %%%%%%%%%%%%%%
 \section{Related Works}
 \label{sec:background}
-Recent research by \cite{chen2023} demonstrated the use of ShuffleNet v2 for garbage classification tasks, showing that lightweight models can perform well on image-based waste categorization. Their work combines the ShuffleNet model and the depth-separable convolution method to create lightweight YOLOv5s for classifying waste items. Their tuned model, though, only contained 62\% of the parameters from the original model. Our work builds on these foundations by evaluating a broader set of architectures and comparing them in terms of performance and applicability to real-world use cases.
+Recent research by Chen et al. \cite{chen2023} demonstrated the use of ShuffleNet v2 for garbage classification tasks, showing that lightweight models can perform well on image-based waste categorization. Their work combines the ShuffleNet model and the depth-separable convolution method to create lightweight YOLOv5s for classifying waste items. Their tuned model, though, only contained 62\% of the parameters from the original model. Our work builds on these foundations by evaluating a broader set of architectures and comparing them in terms of performance and applicability to real-world use cases.
 
 %%%%%%%%%% METHODOLOGY %%%%%%%%%%%%%%
 
@@ -75,7 +75,11 @@ Recent research by \cite{chen2023} demonstrated the use of ShuffleNet v2 for gar
 \label{sec:methodology}
 
 \subsection{Dataset and Preprocessing}
-We used a labeled dataset consisting of 19,762 waste images, categorized into 10 distinct classes, including shoes, batteries, clothes, trash, glass, cardboard, metal, paper, plastic, and biological. We then manually classified these images into the following categories: \textit{Recyclable}, \textit{Organic}, \textit{Specialty Recycling}, and \textit{Non-Recyclable}. The distinctions are shown below in Figure 1. Each image was manually annotated to ensure accurate ground truth for model training. Preprocessing steps included resizing images to a uniform shape, normalization, and data augmentation (random flips, rotations, and shifts) to enhance model generalization.
+We used a labeled dataset consisting of 19,762 waste images, categorized into 10 distinct classes, including shoes, batteries, clothes, trash, glass, cardboard, metal, paper, plastic, and biological. We then manually classified these images into the following categories: \textit{Recyclable}, \textit{Organic}, \textit{Specialty Recycling}, and \textit{Non-Recyclable}.
+\vspace{0.1cm}
+
+
+The distinctions are shown below in Figure 1. Each image was manually annotated to ensure accurate ground truth for model training. Preprocessing steps included resizing images to a uniform shape, normalization, and data augmentation (random flips, rotations, and shifts) to enhance model generalization.
 
 \begin{figure}[h]
     \centering
@@ -86,6 +90,7 @@ We used a labeled dataset consisting of 19,762 waste images, categorized into 10
 
 \subsection{Model Architectures}
 We evaluated three state-of-the-art Convolutional Neural Network (CNN) architectures, each representing a different, unique approach to balancing depth, efficiency, and representational power. These models were selected to explore architectures that have driven progress in image classification tasks:
+\vspace{0.2cm}
 \begin{itemize}
     \item \textbf{ResNet-50}: ResNet-50 is a deep residual network known for its robust feature extraction using skip connections. With 50 layers in depth, this architecture contains residual blocks that address the vanishing gradient problem and enable the model to learn complex features from images.
 \begin{figure}[h]
@@ -111,7 +116,7 @@ We evaluated three state-of-the-art Convolutional Neural Network (CNN) architect
 \end{figure}
 \end{itemize}
 
-Each model was trained using the same train-validation split and hyperparameter setup, ensuring a fair comparative evaluation.
+Each model was trained using the same train-validation split and hyperparameter setup, ensuring a fair comparative evaluation. Even the Compute Power used were the same for each model's training phase.
 
 % \begin{figure}[h]
 %     \centering
@@ -160,16 +165,49 @@ EfficientNet-B0 & 2471 \\
 To assess model performance, we evaluated each CNN architecture using two key metrics: classification accuracy and training time.
 
 \begin{itemize}
-    \item \textbf{GoogLeNet} was the \textit{fastest model} to train, completing in 760 seconds (12.67 minutes), but showed lower classification performance.
-    \item \textbf{EfficientNet} delivered the \textit{best classification metrics}, although it had the longest training time at 2471 seconds (41.18 minutes).
-    \item \textbf{ResNet} achieved a balance, performing well in both accuracy and efficiency, making it a robust and practical model for deployment.
+    \item \textbf{GoogLeNet} was the \textit{fastest model} to train, completing in 760 seconds (12.67 minutes), and showed the highest classification performance.
+
+    
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=\linewidth]{report_images/gnet_metrics.png}
+        \caption{Detailed Classification Metrics for GoogLeNet across 10 waste categories.}
+        \label{fig:gnet_metrics}
+    \end{figure}
+
+
+
+
+    \item \textbf{EfficientNet} delivered \textit{mediocre classification metrics}, and it also had the longest training time at 2471 seconds (41.18 minutes).
+
+    \vspace{1cm}
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{report_images/enet_metrics.png}
+    \caption{Detailed Classification Metrics for EfficientNet across 10 waste categories.}
+    \label{fig:gnet_metrics}
+\end{figure}
+
+
+    \item \textbf{ResNet} achieved high accuracy, however took a long time to train at 2136 seconds (35.6 minutes).
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{report_images/rnet_metrics.png}
+    \caption{Detailed Classification Metrics for ResNet50 across 10 waste categories.}
+    \label{fig:gnet_metrics}
+\end{figure}
+
+    
 \end{itemize}
 
 \begin{table}[h]
 \centering
 \caption{Evaluation Metrics for CNN Models}
 \
-\renewcommand{\arraystretch}{1.2} %Adjust row height slightly
+\renewcommand{\arraystretch}{1} %Adjust row height slightly
 \begin{tabular}{|l|c|c|c|}
 
 \hline
@@ -188,38 +226,55 @@ Support         & 2963  & 2944  & 2963 \\
 These results help guide model selection based on use-case priorities—speed, accuracy, or a trade-off between the two. For real-world implementation, especially in environments with limited computational resources or real-time constraints, such insights are critical.
 
 \subsection{Results Summary}
-Training times varied significantly: ResNet took 2136 seconds, GoogLeNet 760 seconds, and EfficientNet 2471 seconds. ResNet achieved the best classification metrics, while GoogLeNet trained fastest, but underperformed in accuracy. EfficientNet performed worst across the board. These results indicate a trade-off between speed and accuracy in real-world deployment scenarios.
+
+The top-performing model in both evaluation metric categories, training time, and accuracy was GoogLeNet. ResNet slightly underperformed in accuracy and took a long time to train. EfficientNet performed the worst across the board.  
+
+These results indicate a trade-off between speed and accuracy in real-world deployment scenarios. Notably, inference time does not vary across models, indicating that with adequate available training and tuning resources, the computational overhead at time of use would likely be similar across the models.
 
 %%%%%%%%%% DISCUSSION %%%%%%%%%%%%%%
 \section{Discussion}
 \label{sec:discussion}
-ResNet emerged as the most balanced choice for deployment due to its superior classification metrics, despite its longer training time. The performance of the models varied by class complexity, highlighting the need for robust architectures in applications such as smart bins or automated recycling plants. 
+GoogLeNet emerged as the most balanced choice for deployment due to its superior classification metrics and quick training time. GoogLeNet's speed advantage may suit edge devices, where real-time analysis of object type detection and classification into garbage types is time sensitive. ResNet displayed high accuracy and may prove more useful with a different dataset. EfficientNet requires more tuning for improvement. 
+\vspace{0.2cm}
 
-GoogLeNet’s speed advantage may suit edge devices, where real-time analysis of object type detection and classification into garbage types are time sensitive.
+The performance of the models varied by class complexity, highlighting the need for robust architectures in applications such as smart bins or automated recycling plants.
+\vspace{0.2cm}
 
-EfficientNet requires more tuning for improvement. It is possible that each of these models do well in specific parts of the feature space of the images we have. So having an educated ensemble of the models would be beneficial to have an overall winner prediction framework. 
+Each of these models may do well in specific parts of the feature space of the images we have. So, having an educated ensemble of models would be beneficial to have an overall winner prediction framework. 
 
 %%%%%%%%%% CONCLUSION %%%%%%%%%%%%%%
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 The WISE project validated the potential of CNNs for waste classification. ResNet’s performance makes it suitable for real-world deployment, including smart waste bins and mobile applications. 
 
-Future work could explore transfer learning, data augmentation, and real-time deployment using embedded systems.
+Future work could explore further transfer learning, data augmentation, and real-time deployment using embedded systems.
 
-For an industrial product out of this project, we will need to experiment the ensemble model on high volume of images across various lighting settings to ensure that all edge cases are covered. Having confidence intervals of predictive capabilities will help users make an informed decision in case of ambiguous situations. 
+Interesting considerations of applying these models in a production environment would be when to make an unsure prediction or ask the user for a better picture (angle, lighting, etc.). Asking for another picture is straightforward in the application mentioned above of a single public waste bin with a user interface, but in an industrial setting, this is not always possible and would decrease efficiency and usefulness. This would require further testing to see where the model inconsistencies lie. 
+\vspace{0.2cm}
 
-We will also need to add live bounding box identification to correctly select which object in the image/video is the actual piece of waste. 
+If everything is below a certain confidence threshold, then in some cases nothing should be guessed, but other times it may be more nuanced and the model actually has inconsistent predictions on certain objects or types of images. 
+
+For an industrial product out of this project, we will need to train the ensemble model on a high volume of images across various lighting settings to ensure that all edge cases are covered. Having confidence intervals of predictive capabilities will help users make an informed decision in case of ambiguous situations. Furthermore, industrial settings could benefit from the combined use of our deep learning image classifiers along with NIRS or other current gold standard methods to increase robustness and accuracy, particularly in high-volume and high-stakes environments.
+\vspace{0.2cm}
+
+A further extension would be to add live bounding box identification to correctly select which object in the image/video is the actual piece of waste. The model is also not currently set up to handle video frames, but in real-world settings, it would almost certainly be used with video, which adds further complexity and increases the necessity of more advanced segmentation and use of bounding boxes.
+\vspace{0.1cm}
 
 A model that is trained with real-world edge cases and real-time image identification methods as described above would allow us to build a real-time deployment system that could be displayed by public waste bins (airports, schools, malls, etc.). This application reduces the extensive need for sorting later on and speeds up the waste removal process. Along with improved accuracy, we would be able to prevent dangerous waste mishandling (such as throwing away batteries) and prevent recycling contamination that can occur if trash is wrongfully included. The same system could be shared as a mobile app, increasing consumer awareness while allowing better sorting to occur even without the advanced waste bin. 
+\vspace{0.2cm}
 
-In addition, behind the scenes, recycling facilities can implement this technology to allow robotic arms to sort instead of the need for manual human sorting. This reduces the likelihood of human error and speeds up processes, again creating improved results. 
+In addition, behind the scenes, recycling facilities can implement this technology to allow robotic arms to sort instead of the need for manual human sorting. This reduces the likelihood of human error and speeds up processes, again creating improved results and reducing risks to operators who might otherwise come into prolonged contact with hazardous materials.
+\vspace{0.2cm}
 
-Interesting considerations of applying these models in a production sense would be when to make an unsure prediction or ask the user for a better picture (angle, lighting, etc.). This would require further testing on our end, seeing where the model inconsistencies lie. Sometimes it may be best if everything below a certain confidence threshold should not be guessed, but other times it may be more nuanced and the model actually has inconsistent predictions on certain objects. 
 
 
 
 %\bibliographystyle{plainnat}
 \begin{thebibliography}{99}
+\bibitem{aral2018}
+Aral, R. A., Keskin, S. R., Kaya, M., \& Haciomeroglu, M. (2018).
+\textit{Classification of trashnet dataset based on deep learning models.}
+2018 IEEE International Conference on Big Data (Big Data)
 \bibitem{chen2023}
 Chen, A., Liu, Y., \& Zhang, Q. (2023).
 \textit{Image-Based Waste Classification Using Lightweight CNNs.}
@@ -230,27 +285,9 @@ Choi, J., Lim, B., \& Yoo, Y. (2023).
 Applied Sciences, 13(18), 10224.
 \end{thebibliography}
 
-\appendix
-\section{Appendix}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{report_images/rnet_metrics.png}
-    \caption{Detailed Classification Metrics for ResNet50 across 10 waste categories.}
-    \label{fig:gnet_metrics}
-\end{figure}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{report_images/gnet_metrics.png}
-    \caption{Detailed Classification Metrics for GoogLeNet across 10 waste categories.}
-    \label{fig:gnet_metrics}
-\end{figure}
+% \appendix
+% \section{Appendix}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\linewidth]{report_images/enet_metrics.png}
-    \caption{Detailed Classification Metrics for EfficientNet across 10 waste categories.}
-    \label{fig:gnet_metrics}
-\end{figure}
 
 \end{document}
